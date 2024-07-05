@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Slide Up on Hover</title>
+  <style>
+    .text-container {
+      position: relative;
+      overflow: hidden;
+      width: fit-content; /* Adjust width as needed */
+      background-color: #f0f0f0; /* Background color of the container */
+      padding: 10px; /* Padding around the text */
+    }
+
+    .text-container p {
+      margin: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease; /* Transition for transform and opacity */
+    }
+
+    .text-container:hover p {
+      transform: translateY(-100%); /* Slide up effect */
+      opacity: 0; /* Hide the original text */
+      pointer-events: none; /* Prevent pointer events on the original text */
+    }
+
+    .text-container::before {
+      content: attr(data-text); /* Display the same text as content */
+      position: absolute;
+      top: 0%;
+      left: 0;
+      width: 100%;
+      transform: translateY(100%);
+      text-align: center;
+      background-color: #f0f0f0; /* Background color for the revealed text */
+      transition: transform 0.3s ease;
+      opacity: 0; /* Initially hidden */
+      color: #333; /* Text color of the revealed text */
+      padding: 10px; /* Padding around the revealed text */
+    }
+
+    .text-container:hover::before {
+      transform: translateY(0); /* Slide down effect to reveal the text */
+      opacity: 1; /* Show the revealed text */
+    }
+  </style>
+</head>
+<body>
+
+<div class="text-container" data-text="This is the text that will slide up on hover.">
+  <p>This is the text that will slide up on hover.</p>
+</div>
+
+</body>
+</html>
